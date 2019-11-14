@@ -2,6 +2,7 @@
 import React, {useState} from "react";
 import "./App.css";
 import BottomRow from "./BottomRow";
+//import React, { useRef, useEffect} from 'react';
 
 
 function App() {
@@ -10,7 +11,7 @@ function App() {
   const [value, setValue] = useState(0);
   const [value2, setValue2] = useState(0);
 
-  function touchDown(event){
+  function touchDown(){
     setValue(value + 7);
 
   }
@@ -18,13 +19,29 @@ function App() {
     setValue(value + 3);
   }
 
-  function touchDown2(event) {
+  function touchDown2() {
     setValue2(value2 + 7);
 
   }
   function fieldGoal2() {
     setValue2(value2 + 3);
   }
+  
+  // const Timer = (props) => {
+  //     const [time, setTime] = useState(new Date().toLocaleTimeString());
+  //     const secondsPassed = useRef(0);
+
+  //     useEffect(() => {
+  //       const timeout = setTimeout(() => {
+  //         const date = new Date()
+  //         secondsPassed.current = secondsPassed.current + 1;
+  //         setTime(date.toLocaleTimeString());
+  //       }, 1000);
+  //       return () => {
+  //         clearTimeout(timeout);
+  //       }
+  //     }, [time])
+
 
   return (
     <div className="container">
@@ -37,7 +54,7 @@ function App() {
 
   <div className="home__score">{value}</div>
           </div>
-          <div className="timer">00:03</div>
+  <div className="timer">00:30</div>
           <div className="away">
             <h2 className="away__name">Tigers</h2>
   <div className="away__score">{value2}</div>
@@ -52,7 +69,7 @@ function App() {
           <button onClick={fieldGoal}className="homeButtons__fieldGoal">Home Field Goal</button>
         </div>
         <div className="awayButtons">
-          <button onClick={touchDown2} className="awayButtons__touchdown">Away Touchdown</button>
+          <button onClick={touchDown2}className="awayButtons__touchdown">Away Touchdown</button>
           <button onClick={fieldGoal2}className="awayButtons__fieldGoal">Away Field Goal</button>
         </div>
       </section>
