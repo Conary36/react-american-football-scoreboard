@@ -1,10 +1,30 @@
 //TODO: STEP 1 - Import the useState hook.
-import React from "react";
+import React, {useState} from "react";
 import "./App.css";
 import BottomRow from "./BottomRow";
 
+
 function App() {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
+
+  const [value, setValue] = useState(0);
+  const [value2, setValue2] = useState(0);
+
+  function touchDown(event){
+    setValue(value + 7);
+
+  }
+  function fieldGoal(){
+    setValue(value + 3);
+  }
+
+  function touchDown2(event) {
+    setValue2(value2 + 7);
+
+  }
+  function fieldGoal2() {
+    setValue2(value2 + 3);
+  }
 
   return (
     <div className="container">
@@ -15,12 +35,12 @@ function App() {
 
             {/* TODO STEP 3 - We need to change the hardcoded values in these divs to accept dynamic values from our state. */}
 
-            <div className="home__score">32</div>
+  <div className="home__score">{value}</div>
           </div>
           <div className="timer">00:03</div>
           <div className="away">
             <h2 className="away__name">Tigers</h2>
-            <div className="away__score">32</div>
+  <div className="away__score">{value2}</div>
           </div>
         </div>
         <BottomRow />
@@ -28,12 +48,12 @@ function App() {
       <section className="buttons">
         <div className="homeButtons">
           {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
-          <button className="homeButtons__touchdown">Home Touchdown</button>
-          <button className="homeButtons__fieldGoal">Home Field Goal</button>
+          <button onClick={touchDown}className="homeButtons__touchdown">Home Touchdown</button>
+          <button onClick={fieldGoal}className="homeButtons__fieldGoal">Home Field Goal</button>
         </div>
         <div className="awayButtons">
-          <button className="awayButtons__touchdown">Away Touchdown</button>
-          <button className="awayButtons__fieldGoal">Away Field Goal</button>
+          <button onClick={touchDown2} className="awayButtons__touchdown">Away Touchdown</button>
+          <button onClick={fieldGoal2}className="awayButtons__fieldGoal">Away Field Goal</button>
         </div>
       </section>
     </div>
