@@ -2,7 +2,7 @@
 import React, {useState, useRef, useEffect} from "react";
 import "./App.css";
 import BottomRow from "./BottomRow";
-//import React, { useRef, useEffect} from 'react';
+import Timer from "./Timer.js";
 
 
 function App() {
@@ -12,51 +12,42 @@ function App() {
   const [value2, setValue2] = useState(0);
 
   
-  const touchDown = (e) => {
-    console.log(e.target.className);
-    if(e.target.className === 'homeButtons_touchdown'){
-      setValue(value + 7);
-    } else if(e.target.className === 'awayButtons_touchdown'){
-      setValue2(value2 + 7);
-    }
-  };
+  function touchDown() {
+    setValue(value + 7);
+  }
 
-  const fieldGoal = (e) => {
-    console.log(e.target.className);
-    if(e.target.className === 'homeButtons_fieldGoal'){
-      setValue(value + 3);
-    }else if (e.target.className === 'awayButtons_fieldGoal'){
-      setValue2(value2 + 3);
-    }
+  function fieldGoal() {
+    setValue(value + 3);
+  }
+
+  function touchDown2() {
+    setValue2(value2 + 7);
+  }
+
+  function fieldGoal2() {
+    setValue2(value2 + 3);
+  }
+
+  // const touchDown = (e) => {
+  //   console.log(e.target.className);
+  //   if(e.target.className === 'homeButtons_touchdown'){
+  //     setValue(value + 7);
+  //   } else if(e.target.className === 'awayButtons_touchdown'){
+  //     setValue2(value2 + 7);
+  //   }
+  // };
+
+  // const fieldGoal = (e) => {
+  //   console.log(e.target.className);
+  //   if(e.target.className === 'homeButtons_fieldGoal'){
+  //     setValue(value + 3);
+  //   }else if (e.target.className === 'awayButtons_fieldGoal'){
+  //     setValue2(value2 + 3);
+  //   }
   
-  };
+  // };
 
-  const Timer = () => {
-      const [seconds, setSeconds] = useState(0);
-      const [isActive, setIsActive] = useState(false);
-
-      function toggle() {
-        setIsActive(!isActive);
-      }
-
-      function reset() {
-        setSeconds(0);
-        setIsActive(false);
-      }
-
-      useEffect(() => {
-        let interval = null;
-        if (isActive) {
-          interval = setInterval(() => {
-            setSeconds(seconds => seconds + 1);
-          }, 1000);
-        } else if (!isActive && seconds !== 0) {
-          clearInterval(interval);
-        }
-        return () => clearInterval(interval);
-      }, [isActive, seconds]);
-    };
-
+  
   return (
     <div className="container">
       <section className="scoreboard">
@@ -68,7 +59,7 @@ function App() {
 
   <div className="home__score">{value}</div>
           </div>
-<div className="timer">{Timer}</div>
+<div className="timer"><Timer/></div>
           <div className="away">
             <h2 className="away__name">Tigers</h2>
   <div className="away__score">{value2}</div>
@@ -83,8 +74,8 @@ function App() {
           <button onClick={fieldGoal}className="homeButtons__fieldGoal">Home Field Goal</button>
         </div>
         <div className="awayButtons">
-          <button onClick={touchDown}className="awayButtons__touchdown">Away Touchdown</button>
-          <button onClick={fieldGoal}className="awayButtons__fieldGoal">Away Field Goal</button>
+          <button onClick={touchDown2}className="awayButtons__touchdown">Away Touchdown</button>
+          <button onClick={fieldGoal2}className="awayButtons__fieldGoal">Away Field Goal</button>
         </div>
       </section>
     </div>
